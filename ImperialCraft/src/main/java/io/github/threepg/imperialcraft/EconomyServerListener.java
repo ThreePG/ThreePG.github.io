@@ -1,7 +1,4 @@
-package io.github.threepg.listeners;
-
-import io.github.threepg.imperialcraft.Economy_API_Vault;
-import io.github.threepg.imperialcraft.ImperialCraft;
+package io.github.threepg.imperialcraft;
 
 import java.util.logging.Logger;
 
@@ -14,12 +11,12 @@ import org.bukkit.plugin.Plugin;
 
 public class EconomyServerListener implements Listener {
 	
-	Economy_API_Vault economy = null;
+	ImpEconomy economy = null;
 	private Plugin vault = null;
 	private Plugin ic = null;
 	private Logger LOG = null;
 	
-	public EconomyServerListener(Economy_API_Vault economy) {
+	public EconomyServerListener(ImpEconomy economy) {
 		this.economy = economy;
 		this.ic = ImperialCraft.plugin;
 		this.vault = ic.getServer().getPluginManager().getPlugin("Vault");

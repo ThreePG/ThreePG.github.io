@@ -1,0 +1,9 @@
+List all current permissions.
+
+tpg.econ.take
+tpg.econ.balance
+tpg.econ.balance.others
+tpg.econ.create
+tpg.econ.give
+tpg.econ.deposit
+tpg.econ.remove

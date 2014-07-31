@@ -1,12 +1,13 @@
 package io.github.threepg.imperialcraft;
 
+import io.github.threepg.commands.CommandHandler;
+
 import java.util.logging.Logger;
 
 import net.milkbowl.vault.economy.Economy;
 
 import org.bukkit.ChatColor;
 import org.bukkit.event.HandlerList;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,9 +18,8 @@ public class ImperialCraft extends JavaPlugin {
 	private final Logger LOG = this.getLogger();
 	public static ImperialCraft plugin = null;
 	
-	private final Economy econ = null;
-	private Economy_API_Vault icEcon = null;
-	private transient Economy economy = null;
+	private Economy econ = null;
+	private transient ImpEconomy icEcon = null;
 	
 	public final String LOG_TAG = "[Imperial]";
 	public final ChatColor err = ChatColor.RED;
@@ -34,7 +34,6 @@ public class ImperialCraft extends JavaPlugin {
 		this.saveDefaultConfig();
 		this.reloadConfig();
 		
-		economy = new Economy();
 		
 		// Register Listeners
 		getServer().getPluginManager().registerEvents(new ImperialPlayerListener(), this);
@@ -42,7 +41,7 @@ public class ImperialCraft extends JavaPlugin {
 		// Command Instance(s)
 		CommandHandler ch = new CommandHandler();
 		ch.init();
-		this.getCommand("tpg").setExecutor(ch);
+		this.getCommand("ic").setExecutor(ch);
 		
 		// Logs
 		LOG.info(LOG_TAG + " Version: " + pdf.getVersion());
@@ -61,6 +60,7 @@ public class ImperialCraft extends JavaPlugin {
 	@Override
 	public void onDisable() {
 		HandlerList.unregisterAll();
+		plugin = null;
 	}
 	
 	private boolean setupEconomy() {
@@ -69,12 +69,16 @@ public class ImperialCraft extends JavaPlugin {
 		}
 		RegisteredServiceProvider<Economy> rsp = getServer()
 				.getServicesManager().getRegistration(Economy.class);
-		icEcon = new Economy_API_Vault();
+		this.icEcon = new ImpEconomy();
 		if (rsp == null) {
 			return false;
 		}
 		econ = rsp.getProvider();
 		return econ != null;
+	}
+	
+	public ImpEconomy getIcEcon() {
+		return icEcon;
 	}
 }
 

@@ -1,0 +1,4 @@
+account_on_join: false
+currency_name_singular: dollar
+currency_name_plural: dollars
+currency_symbol: $

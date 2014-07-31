@@ -1,0 +1,12 @@
+name: ImperialCraft
+main: io.github.threepg.imperialcraft.ImperialCraft
+version: 0.1.1-SNAPSHOT
+description: An All-Around Economies Plugin
+
+author: 3PG
+
+depend: [Vault]
+
+commands:
+  ic:
+    description: The base command for all that is Imperial!
