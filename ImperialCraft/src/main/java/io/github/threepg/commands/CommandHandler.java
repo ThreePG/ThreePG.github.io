@@ -32,8 +32,8 @@ public class CommandHandler implements CommandExecutor {
 	
 	// All new commands MUST be initialized.
 	public void init() {
-		cmds.add(new SendMe());
-		cmds.add(new Econ());
+		// cmds.add(new SendMe());
+		cmds.add(new Balance());
 	}
 	
 
